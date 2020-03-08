@@ -347,5 +347,8 @@ v-model  双向（数据<->视图）
 ----------------------------------------------------------------------
 代码质量管理---eslint
 代码测试---jest
-ToDo:练习 
 --------------------------------------------------------------------
+git
+https://www.cnblogs.com/EasonJim/p/8403587.html
+https://www.jianshu.com/p/37f3a7e4a193
+https://blog.csdn.net/weixin_33127753/article/details/88870257
