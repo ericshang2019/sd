@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="js/jquery-3.4.1.min.js" charset="utf-8"></script>
+    <script type="text/javascript">
+     async function show() {
+       let a=2;
+       let b=3;
+       let data=await $.ajax({url:'data/1.txt',dataType:'json'});
+       if(data[0]===1){
+         let temp=await $.ajax({url:'data/2.txt',dataType:'json'});
+         console.log(temp.name);
+       }else{
+         let temp=await $.ajax({url:'data/3.txt',dataType:'json'});
+         console.log(temp);
+       }
+     }
+
+
+    show();
+
+    </script>
+
+  </head>
+  <body>
+
+  </body>
+</html>

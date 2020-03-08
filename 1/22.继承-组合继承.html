@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="js/jquery-3.4.1.min.js" charset="utf-8"></script>
+    <script type="text/javascript">
+
+    // 父类
+     let Animal=function (name){
+       this.name=name || 'Animal'
+       this.sleep=function () {
+         console.log(`${this.name}正在睡觉`);
+       }
+     }
+     Animal.prototype.eat=function(food){
+       console.log(`${this.name}正在吃${food}`);
+     }
+
+     // cat子类
+     let Cat=function (name){
+       Animal.call(this);
+       this.name=name || 'Tom';
+     }
+     Cat.prototype=new Animal();
+     Cat.prototype.test="testestt";
+
+     //修复构造函数指向
+     Cat.prototype.constructor = Cat;
+
+     debugger;
+     let cat=new Cat();
+     debugger;
+     console.log(cat.name);
+     cat.eat('fish');
+     cat.sleep();
+     console.log(cat instanceof Animal); // true
+     console.log(cat instanceof Cat); // true
+
+
+
+     // dog 子类
+     let Dog=function (name){
+       Animal.call(this);
+       this.name=name || 'lucy';
+     }
+     Dog.prototype=new Animal();
+     debugger;
+
+
+
+
+    </script>
+
+  </head>
+  <body>
+
+  </body>
+</html>

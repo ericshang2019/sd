@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+   <script type="text/javascript">
+   const math = ((...args) => {
+   let calculationCount = 0;
+
+   const sum = (numA, numB) => {
+       calculationCount += 1;
+       return numA + numB;
+   };
+
+   const sub = (numA, numB) => {
+       calculationCount += 1;
+       return numA - numB;
+   };
+
+   const mul = (numA, numB) => {
+       calculationCount += 1;
+       return numA * numB;
+   };
+
+   const div = (numA, numB) => {
+       calculationCount += 1;
+       return numA / numB;
+   };
+
+   return {
+       sum, sub, mul, div
+   };
+})(); // 如果需要可以传参数。
+console.log(math);
+
+debugger;
+for(var x=1;x<3;x++)
+{
+  debugger;
+  var a=2;
+
+}
+
+let vvv=function(){
+  let a=1;
+  let b=2;
+  // return {5,6};
+}
+
+let y=vvv();
+
+   </script>
+
+
+  </head>
+  <body>
+
+  </body>
+</html>

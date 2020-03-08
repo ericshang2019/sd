@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="js/jquery-3.4.1.min.js" charset="utf-8"></script>
+    <script type="text/javascript">
+    let p=new  Promise(function(resolve,reject){
+      let res=$.ajax({
+        url:'data/1.txt',
+        dataType:'json'
+
+        success(arr){
+          console.log(`1:${arr}`);
+          resolve(arr);
+        },
+        error(res){
+          console.log(res);
+          reject(res);
+        }
+      })
+    });
+
+    p.then((arr)=>{
+      alert()
+      console.log(`2:${arr}`);
+    },(res)=>{
+      alert('not ok');
+      console.log(res);
+    })
+
+    </script>
+
+  </head>
+  <body>
+
+  </body>
+</html>

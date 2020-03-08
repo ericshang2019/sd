@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript">
+    console.log(this);
+    let person={
+      name:"finn",
+      action:function(){
+        console.log(this);
+        alert(this.name);
+      },
+      action2:()=>{
+        alert(this);
+        let s=5;
+        let that=this;
+        console.log(this);
+      }
+    }
+     person.action();
+     person.action2();
+    let odate=new Date();
+    odate.action=person.action;
+    odate.action();
+    </script>
+
+  </head>
+  <body>
+
+  </body>
+</html>

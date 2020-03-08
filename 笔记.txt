@@ -1,0 +1,350 @@
+https://zns23.ke.qq.com/#category=-1&tab=0
+https://www.bilibili.com/video/av47549286
+https://www.bilibili.com/video/av83777854
+
+var带来的问题
+
+1：重复声明
+var a=12;
+var a=13;
+
+2：控制修改
+var FINN=5；
+if(FINN=6){}
+
+3：块级作用域
+let 防止重复声明 变量
+const 防止重复声明 常量
+闭包：js里面没有块级作用域的一个临时解决方案
+全局作用域中，用 const 和 let 声明的变量不在 window 上，那到底在哪里？如何去获取？
+https://www.cnblogs.com/wangxi01/p/11207742.html
+
+4：匿名函数
+小括号能把我们的表达式组合分块，并且每一块，也就是每一对小括号，都有一个返回值
+因此，小括号对加上匿名函数就如同有名字的函数般被我们取得它的引用位置了。所以如果在这个
+引用变量后面再加上参数列表，就会实现普通函数的调用形式。
+
+5：变量
+var  重复声明；不能限制修改；函数级作用域
+let  不能；    变量         块级
+cont  不能；   常量         块级
+----------------------------------------------------------------------------
+解构赋值
+var {a,b}={"a":1,"b":2}
+------------------------------------------------------------------------
+箭头函数
+function (){
+....
+}
+()=>{}
+函数简写：
+1：如果有且仅有一个参数，()也可以不写
+2：如果有且仅有一个语句且是return，{}也可以不写
+修正this
+https://blog.51cto.com/2014fontend/2327334
+1.普通函数的this：指向它的调用者，如果没有调用者则默认指向window
+2.箭头函数的this: 指向箭头函数定义时所处的对象，而不是箭头函数使用时所在的对象，默认使
+用父级的this
+----------------------------------------------------------------------------
+参数展开
+   收集
+   展开
+数组展开
+json展开
+----------------------------------------------------------------------------
+原生对象array扩展
+map  映射  一一对应
+    [45,70,12,100] =>[不及格，及格，不及格，及格]
+reduce  n->1
+filter  过滤
+foreah  遍历
+----------------------------------------------------------------------------
+JSON.stringify
+JSON.parse
+json标准写法
+1：key必须有双引号
+2：如果值是字符串，比如有双引号，不能是单引号
+{"a":1,"b":"abc"}   正确
+{a:1,"b":"abc"}   错误
+{a:1,"b":'abc'}   错误
+-------------------------------------------------------------------------
+编译es6（IE9以下不支持es6,包括ie9）
+一：在线编译
+0：资源地址
+https://unpkg.com/babel-standalone@6.26.0/babel.min.js
+1：引入
+<script src="js/babel.min.js" charset="utf-8"></script>
+<script type="text/babel">
+let a=2;
+alert(a);
+</script>
+
+
+二：离线编译
+1:安装node
+2:创建包文件
+npm init -y
+3：安装babel
+npm i @babel/core @babel/cli @babel/preset-env -D
+npm i @babel/polyfill  解决类似ie6更低版本浏览器
+3:包文件添加脚本
+"build":"babel src -d dest"
+4：添加配置文件（.babelrc）
+{
+  "presets":["@babel/preset-env"
+  ]
+}
+5:执行
+npm run build
+-----------------------------------------------------------------------------
+融合同步、异步
+1：
+Promise  封装
+Promise.all
+https://blog.csdn.net/qq_38774001/article/details/103408611
+2：
+generator/yield   已废弃，用async/await替代了
+3：
+async/await
+普通函数   一直执行，直到结束
+async/await      能够"暂停"，async await语法不会阻塞Node.js的单线程。async await语法可能是回调函数的语法糖
+------------------------------------------------------------------------------
+prototype/__proto__
+1：每个对象都会有__proto__这个属性（__proto__指向产生它的类的prototype）（Object的prototype没有__proto__，即它是一切之源），
+是用来通过__proto__找到它的原型即prototype，function声明的变量的__proto__指向Function的prototype
+2：function声明的变量、Function和Object都有prototype， 有prototype的东西可以产生实例（即可以作为new 后边的值）
+3：prototype它是一个对象（在声明函数变量是在函数内部由js自动创建），因此它也有__proto__，并且指向Object的prototype;
+4：特殊的Function和Object(详见原型指向.jpg说明)
+4.1：首先没鸡没蛋，先有一个特殊对象root_prototype，它是上帝。
+- 接下来应该是先有Function，并且定义它的prototype和__proto__，都连上了root_prototype。
+- 然后才有了Object，它是Function的instance，继承了Function。这时候Object仍然只是个普通的函数。
+- 然后规定Object.prototype = root_prototype，这时候Object才开始显得特殊，成为了原型链的顶端，否则它和其它函数根本没什么区别。
+- 于是所有的东西，包括Function，都成了Object的instance了。
+4.2：我将Object的prototype称为源型，下面我给出我个人对这些现象的解释：
+源型是js的内置的一段代码，所有所有通过这个源型创造出的都是object，
+第一步先创造出Function的prototype，因此这个prototype的__proto__指向源型，
+然后再通过这个prototype造出Function，因此Function的__proto__指向它自己的prototype，
+然后用Function造出Object，因此Object的__proto__指向Function的prototype，
+然后js直接将Object的prototype替换为源型。
+附：
+https://blog.csdn.net/backee/article/details/83378772
+https://segmentfault.com/a/1190000012553959
+疑问？为什么typeof Function.prototype==="function"
+
+只要你在语言里留下足够多的bug，后世的人就会有足够多的分析文章来阐述你这样做的理由
+                                              ——JS作者
+
+-------------------------------------------------------------------------------
+ES5实现继承的几种方式：
+https://www.cnblogs.com/gwf93/p/10384352.html
+1：原型链继承
+function Cat() {
+}
+cat.prototype = new Animal()
+cat.prototype.name = "cat"
+2：构造继承
+function Cat(name){
+    Animal.call(this);
+    this.name= name || 'Tom';
+}
+3：实例继承
+function Cat(){
+  var instance = new Animal();
+  instance.name = name || 'Tom';
+  return instance;
+}
+4：拷贝继承
+function Cat(name){
+  var animal = new Animal();
+　// 遍历拷贝属性
+  for(var p in animal){
+    Cat.prototype[p] = animal[p];
+  }
+  Cat.prototype.name = name || 'Tom';
+}
+5：组合继承
+function Cat(name){
+  Animal.call(this);
+  this.name = name || 'Tom';
+}
+Cat.prototype = new Animal();  // 修改Cat.prototype不会影响Animal.prototype,所以要new,不能Cat.prototype=Animal.prototype
+
+//修复构造函数指向
+Cat.prototype.constructor = Cat;
+6：寄生组合继承
+function Cat(name){
+  Animal.call(this);
+  this.name = name || 'Tom';
+}
+(function(){
+  // 创建一个没有实例方法的类
+  var Super = function(){};
+  Super.prototype = Animal.prototype;
+  //将实例作为子类的原型
+  Cat.prototype = new Super();
+})();
+-------------------------------------------------------------------------------
+构造函数
+1：当我们用new
+运算符会产生以下步骤：
+ var obj={}; 也就是说，初始化一个对象obj。
+obj.__proto__=a.prototype;
+ a.call(obj);也就是说构造obj，也可以称之为初始化obj。
+2：构造函数意义
+
+https://www.cnblogs.com/aoyo/p/5245162.html
+-------------------------------------------------------------------------------
+ES6面向对象
+class 类声明
+constructor 类构造函数
+extends   继承
+super  父类/超类
+------------------------------------------------------------------
+es6模块化
+1：export
+// 声明导出
+export let a=2
+
+// 导出一堆
+let a,b,c=...;
+export {a,b,c};
+
+// 导出函数
+export funciton（）{}
+
+// 导出类
+export class
+
+// 默认成员
+export default
+2：import
+// 导入全部
+import * as mod1 from 'xxx';
+
+// 导入默认
+import default as mod1 from 'xxx';
+
+// 选择性导入
+import {a,b as name} from 'xxx';
+
+// 运行模块代码，但不引入任何成员
+import 'xxx';
+
+// 异步引入
+let Promise=await imort('xxx');
+---------------------------------------------------------------------------
+位(比特)：bit
+字节(B)：Byte
+千字节(KB、k)：kByte
+兆字节（M、MB）：MByte
+GB
+TB
+1 Byte = 8 bit
+1 KB= 1024 B
+1 MB = 1024 KB
+1 GB = 1024 MB
+1 TB = 1024 GB
+----------------------------------------------------------------------------
+卸载模块
+cnmp un 模块名字  -D
+nodejs中 require是如何搜索加载模块的
+http://blog.chinaunix.net/uid-30150972-id-4882429.html
+注意：npm装的包和cnpm装的包是不能混用的
+----------------------------------------------------------------------------
+file-loader && url-loader
+fiel-loader
+让webpack能够处理文件的loader,将文件也编译到js种（包括直接引入的，也包括CSS种引入的）;
+为避免重名，文件名是文件的MD5值；
+url-loader
+包含file-loader的功能，而且可以把文件转换为base64（dataurl）的形式
+注意：url-loader可以单独使用，但是必须下载file-loader，否则无法正常使用
+------------------------------------------------------------------------------
+常用命令
+查看/修改全局模块全局路径
+npm config ls
+npm cofig set prefix "D:\nodejs\node_modules\node_global （此处填写自己的路径）"
+安装cnpm及注册包源
+$ npm install -g cnpm --registry=https://registry.npm.taobao.org
+全局安装webpack
+cnpm i -g webpack
+查看包信息
+npx autoprefixer --info
+------------------------------------------------------------------------------
+nodejs模块查找机制
+require方法接受以下几种参数的传递：
+
+http、fs、path等，原生模块。
+
+./mod或../mod，相对路径的文件模块。
+
+/pathtomodule/mod，绝对路径的文件模块。
+
+mod，非原生模块的文件模块。
+https://blog.csdn.net/handsomexiaominge/article/details/96461786
+https://blog.51cto.com/dapengtalk/1891051
+-----------------------------------------------------------------------------
+webpack打包原理
+webpack只是一个打包模块的机制，只是把依赖的模块转化成可以代表这些包的静态文件。
+并不是什么commonjs或者amd之类的模块化规范。webpack就是识别你的 入口文件。
+识别你的模块依赖，来打包你的代码。至于你的代码使用的是commonjs还是amd或者es6的import。
+webpack都会对其进行分析。来获取代码的依赖。webpack做的就是分析代码。转换代码，编译代码，输出代码。
+webpack本身是一个node的模块，所以webpack.config.js是以commonjs形式书写的(node中的模块化是commonjs规范的)
+https://www.jianshu.com/p/e24ed38d89fd
+-------------------------------------------------------------------------------
+loader总结
+style-loader   输出样式：<style></style>
+css-loader     解析css文件、import
+postcss-loader+autoprefixer   加前缀
+less-loader   编译less
+
+file-loader/url-loader  引入文件（图片、字体）
+bable-loader  es6
+
+devtool 'source map' 便于调试
+
+注意：IE9以上才支持Object.defineProperty()
+--------------------------------------------------------------------------------
+dev-server 用于开启开发服务器
+1：提供网络环境--cookie等
+2：热更新
+3：双配置
+静态
+module.exports={
+
+}
+动态
+module.exports=funciton(env,argv){
+return{
+  // 公用
+  entry:"..",
+  ..
+
+  // 独立
+  ..env.production ? require('../config/webpack.production.js') :  require('../config/webpack.devlepment.js')
+}
+}
+
+操作html
+plugin
+html-webpack-plugin 帮助输出html
+{
+  ...
+  plugins:[
+  new htmlWebpackPluin({
+  template:''
+  })
+  ]
+}
+
+注意：import和import()是有区别的，import()是分包用的，打包结果会分包
+----------------------------------------------------------------------
+vue
+1:核心思想（极其重要）     由程序思维转变为数据驱动思维
+2：指令
+@click
+v-bind   单向（数据->视图）
+v-model  双向（数据<->视图）
+----------------------------------------------------------------------
+代码质量管理---eslint
+代码测试---jest
+上传git

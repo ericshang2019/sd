@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>eric</title>
+  </head>
+  <body class="bg">
+    <div id='root'>
+    <h1>{{title}}</h1>
+    用户名：<input type="text" name="" value="" v-model='username'>
+    密码：<input type="password" name="" value="" v-model='password'>
+    <button type="submit" name="button" v-bind:disabled='!username || !password'>提交</button>
+    </div>
+  </body>
+</html>

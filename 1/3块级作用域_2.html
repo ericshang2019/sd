@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript">
+    window.onload=function(){
+      let abtn=document.getElementsByTagName('input');
+      for(var i=0;i<abtn.length;i++){
+        !function(i){
+          abtn[i].onclick=function(){
+            alert(i);
+          };
+        }(i);
+      };
+    };
+    </script>
+
+  </head>
+  <body>
+  <input type="button" value="a">
+  <input type="button" value="b">
+  <input type="button" value="c">
+
+  </body>
+</html>

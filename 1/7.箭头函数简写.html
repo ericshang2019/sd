@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript">
+    function add(n){
+      return n+5;
+    }
+
+    function show(n,fn){
+      alert(fn(n));
+    }
+    show(12,add); // 一般函数写法
+    show(12,(n)=>{return n+9}); // 箭头函数标准写法
+    show(12,n=>n+5); // 箭头函数简写，可以省略一大坨
+
+    </script>
+
+  </head>
+  <body>
+
+  </body>
+</html>

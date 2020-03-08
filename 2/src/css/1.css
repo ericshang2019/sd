@@ -1,0 +1,9 @@
+.box {
+  width: 500px;
+  height: 500px;
+  /* background: #ccc;*/
+  background-image: url(../images/1.jpg);
+  background-repeat: no-repeat;
+  transform: rotate(40deg);}
+
+  .my-dialog{width: 400px;margin: 100px auto 0;}

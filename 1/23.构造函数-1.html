@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="js/jquery-3.4.1.min.js" charset="utf-8"></script>
+    <script type="text/javascript">
+
+    let man;
+    (function(){
+      debugger;
+      function Father(name){
+        this.name=name;
+        var test=1;
+        let test2=2;
+        debugger;
+      }
+      Father.eat=function(){
+
+      }
+      Father.prototype.sayName=function(){
+        console.log(this.name);
+      }
+      man=new Father('eric');
+    }())
+    man.sayName();
+    console.log(Father); //Father is not defined
+
+    // 因为Father在闭包中，当我们想对Father类增加方法时可以通过
+    man.constructor.prototype.sayAge = function(age){
+    console.log(age);
+    }
+    man.sayAge('20'); //20
+    // 如果不进行修正，我们的方法将会添加到Person类，而不是Father类。
+    // 详细请参考：https://www.cnblogs.com/aoyo/p/5245162.html
+
+    </script>
+
+  </head>
+  <body>
+
+  </body>
+</html>

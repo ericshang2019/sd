@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="js/jquery-3.4.1.min.js" charset="utf-8"></script>
+    <script type="text/javascript">
+     function f1(){
+       alert(this);
+       debugger;
+       alert(2);
+     }
+     f1();
+     let temp00=f1;
+     let temp0=f1();
+     let temp=new f1();
+     console.log(f1.prototype.constructor === f1)  // true
+     console.log(temp.__proto__===f1.prototype);  // true
+     console.log(f1.__proto__===Function.prototype); // true
+     console.log(Function.prototype.__proto__===Object.prototype); // true
+     console.log(f1.prototype.__proto__===Object.prototype); // true
+
+     console.log(Object.prototype.__proto__===null); // true
+     console.log(Object.prototype);
+     console.log(Function.__proto__===Function.prototype);  // true
+     console.log(f1.prototype.__proto__===Function.prototype.__proto__); // true
+     debugger;
+
+     // Function.prototype.test=34444;
+     Object.prototype.test=77777;
+
+     alert(Function.test);
+
+    </script>
+
+  </head>
+  <body>
+
+  </body>
+</html>

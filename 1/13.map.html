@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript">
+    let arr1=[40,70.30];
+
+    // 写法1
+    let arr2=arr1.map(function (item) {
+      if(item<60)
+      return '不及格';
+      else
+      return '及格';
+    })
+
+    // 写法2
+    let arr3=arr1.map(function (item) {
+      return item<60 ? '不及格':"及格";
+    })
+
+    // 写法3
+    let arr4=arr1.map(item=> item<60 ? '不及格':"及格")
+
+    console.log(arr1);
+    console.log(arr2);
+    console.log(arr3);
+    console.log(arr4);
+    </script>
+
+  </head>
+  <body>
+
+  </body>
+</html>

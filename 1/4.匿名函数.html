@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript">
+    window.onload=function(){
+      let abtn=document.getElementsByTagName('input');
+      for(var i=0;i<abtn.length;i++){
+
+        //1.使用！开头，结构清晰，不容易混乱，推荐使用；
+        !function(i){
+          abtn[i].onclick=function(){
+            alert(i);
+          };
+        }(i);
+
+        //2.能够将匿名函数与调用的()为一个整体，官方推荐使用；
+        (function(i){
+          abtn[i].onclick=function(){
+            alert(i);
+          };
+        }(i));
+
+        //3.无法表明函数与之后的()的整体性，不推荐使用。
+        (function(i){
+          abtn[i].onclick=function(){
+            alert(i);
+          };
+        })(i);
+
+       //4.
+        [function(i){
+          abtn[i].onclick=function(){
+            alert(i);
+          };
+        }(i)];
+
+
+      };
+    };
+    </script>
+
+  </head>
+  <body>
+  <input type="button" value="a">
+  <input type="button" value="b">
+  <input type="button" value="c">
+
+  </body>
+</html>
