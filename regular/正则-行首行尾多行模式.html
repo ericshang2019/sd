@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+       window.onload=()=>{
+           let content=document.getElementById('txtContent');
+           let submit=document.getElementById('btnSubmit');
+           submit.onclick=()=>{
+            content.value=content.value.replace(/^/gm,'  ');
+           }
+
+       }
+        
+    </script>
+</head>
+<body>
+    <textarea id="txtContent" cols="30" rows="10"></textarea>
+    <button id='btnSubmit'>点击</button>
+</body>
+</html>
