@@ -1,0 +1,11 @@
+const Koa=require('koa');
+let server=new Koa();
+server.listen(8088);
+server.use(async ctx=>{
+    console.log('query:',ctx.query);
+    
+    let {a,b}=ctx.query;
+
+    ctx.set('Access-Control-Allow-Origin','*');
+    ctx.body=parseInt(a)+parseInt(b);
+})
