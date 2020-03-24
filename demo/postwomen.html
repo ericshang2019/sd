@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div id='app'>
+      请求url：<input type="text" name="" value="" v-model="url" style="width:800px;height:30px"><br/><br/>
+      请求json：<textarea name="name" rows="8" cols="80" v-model="content"></textarea><br/>
+      返回结果：{{result}}
+      <div class="">
+        <button type="button" name="button" @click="send">发送</button><br/>
+          <button type="button" name="button" @click="fn3">证明await没有阻塞主线程</button>
+      </div>
+
+    </div>
+
+  </body>
+</html>
+<script type="text/javascript" src="./dist/bundle.js">
+
+</script>
