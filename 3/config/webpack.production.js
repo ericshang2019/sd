@@ -6,12 +6,7 @@ module.exports=
   output: {
     path: path.resolve(__dirname, '../build'),
     filename: 'bundle.min.js'
-  },
-  plugins:[
-    new htmlwebpackplugin({
-      template:path.resolve(__dirname,'../index.html')
-    })
-  ]
+  }
 
 }
 console.log(__dirname);

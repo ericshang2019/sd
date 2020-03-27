@@ -1,4 +1,5 @@
 const path = require('path');
+const htmlwebpackplugin=require('html-webpack-plugin');
 
 module.exports = function(env, argv) {
   env = env || {
@@ -30,6 +31,11 @@ module.exports = function(env, argv) {
 
       ]
     },
+    plugins:[
+      new htmlwebpackplugin({
+        template:path.resolve(__dirname,'index.html')
+      })
+    ],
     ...env.production ? require('./config/webpack.production.js') : require('./config/webpack.development.js')
   }
 }
