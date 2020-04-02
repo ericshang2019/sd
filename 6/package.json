@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server"
-
+    "start": "webpack-dev-server --env.development --open",
+    "build": "webpack --env.production",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +21,7 @@
     "eslint-loader": "^3.0.3",
     "file-loader": "^6.0.0",
     "html-webpack-plugin": "^4.0.1",
+    "jest": "^25.2.6",
     "less": "^3.11.1",
     "less-loader": "^5.0.0",
     "postcss-loader": "^3.0.0",
@@ -32,7 +34,17 @@
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3"
   },
-  "stylelint":{
+  "browserslist": [
+    "last 1 version",
+    "> 0.5%",
+    "not dead"
+  ],
+  "stylelint": {
     "extends": "stylelint-config-standard"
+  },
+  "jest":{
+    "roots":[
+      "./tests/"
+    ]
   }
 }

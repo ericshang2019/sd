@@ -1,5 +1,4 @@
 const path = require('path');
-const htmlwebpackplugin=require('html-webpack-plugin');
 
 module.exports = function(env, argv) {
   env = env || {

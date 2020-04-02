@@ -1,16 +1,17 @@
 const path = require('path');
 const StylelintPlugin = require('stylelint-webpack-plugin');
 const HtmlWebpackPlugin=require('html-webpack-plugin');
+
 module.exports={
-  mode: 'production',
+  mode: 'development',
   output: {
-    path: path.resolve(__dirname, '../build'),
-    filename: 'bundle.min.js'
+    filename: 'bundle.js'
   },
   plugins:[
     new StylelintPlugin({files:'**/*.css'}),
     new HtmlWebpackPlugin({
       template:path.resolve(__dirname,'../index.html')
     })
-  ]
+  ],
+  devtool:'source-map'
 }
