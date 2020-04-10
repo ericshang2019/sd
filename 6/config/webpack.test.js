@@ -1,4 +1,5 @@
 const StylelintPlugin = require('stylelint-webpack-plugin');
+const VueLoaderPlugin=require('vue-loader/lib/plugin');
 
 module.exports={
   mode: 'development',
@@ -6,6 +7,7 @@ module.exports={
     filename: 'bundle.js'
   },
   plugins:[
-    new StylelintPlugin({files:'**/*.css'})
+    new StylelintPlugin({files:'**/*.css'}),
+    new VueLoaderPlugin()
   ]
 }

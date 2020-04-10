@@ -1,4 +1,14 @@
 import "../css/main.css";
 import "../less/1.less";
-import app from "./app.vue";
-alert(app);
+import App from "./app.vue";
+import Vue from "vue";
+
+
+let vm=new Vue({
+  el:"#root",
+  data:{},
+  template:"<App/>",
+  components:{
+    App
+  }
+})

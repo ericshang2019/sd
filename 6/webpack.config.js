@@ -1,5 +1,5 @@
 const path = require('path');
-
+const {ESLINT,STYLELINT}=require("./config/index.js");
 
 module.exports = function(env, argv) {
   env = env || {
@@ -23,7 +23,7 @@ module.exports = function(env, argv) {
         // css
         {
           test: /\.css$/i,
-          use: ['style-loader', 'css-loader', {
+          use: ['vue-style-loader', 'css-loader', {
             loader: 'postcss-loader',
             options: {
               plugins: [require('autoprefixer')]
@@ -45,12 +45,14 @@ module.exports = function(env, argv) {
             options: {
               presets: ['@babel/preset-env']
             }
-          }, {
+          },
+          ...ESLINT?[{
             loader: 'eslint-loader',
             options: {
               exclude: /node_modules/
             }
-          }]
+          }]:[]
+        ]
         },
 
         // images
@@ -86,6 +88,12 @@ module.exports = function(env, argv) {
         }
       ]
     },
-    ...conf
+    ...conf,
+    resolve:{
+      alias:{
+        "vue":"vue/dist/vue.esm.js",
+        "@":path.resolve(__dirname,"./src/js/")
+      }
+    }
   }
 }
