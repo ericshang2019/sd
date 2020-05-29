@@ -11,11 +11,9 @@
         dataType:'json',
 
         success(arr){
-          console.log(`1:${arr}`);
           resolve(arr);
         },
         error(res){
-          console.log(res);
           reject(res);
         }
       })
@@ -23,7 +21,7 @@
 
     p.then((arr)=>{
       alert()
-      console.log(`2:${arr}`);
+      console.log(`${arr}`);
     },(res)=>{
       alert('not ok');
       console.log(res);
