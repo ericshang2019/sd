@@ -1,6 +1,6 @@
-https://zns23.ke.qq.com/#category=-1&tab=0
-https://www.bilibili.com/video/av47549286
-https://www.bilibili.com/video/av83777854
+# 一：ES6基础
+
+## 1：ES6关键字
 
 var带来的问题
 
@@ -19,20 +19,16 @@ const 防止重复声明 常量
 全局作用域中，用 const 和 let 声明的变量不在 window 上，那到底在哪里？如何去获取？
 https://www.cnblogs.com/wangxi01/p/11207742.html
 
-4：匿名函数
-小括号能把我们的表达式组合分块，并且每一块，也就是每一对小括号，都有一个返回值
-因此，小括号对加上匿名函数就如同有名字的函数般被我们取得它的引用位置了。所以如果在这个
-引用变量后面再加上参数列表，就会实现普通函数的调用形式。
+4：变量
+var   重复声明；不能限制修改；函数级作用域
+let    不能；        变量                   块级
+cont 不能；       常量                    块级
 
-5：变量
-var  重复声明；不能限制修改；函数级作用域
-let  不能；    变量         块级
-cont  不能；   常量         块级
-----------------------------------------------------------------------------
-解构赋值
+5：解构赋值
+
 var {a,b}={"a":1,"b":2}
-------------------------------------------------------------------------
-箭头函数
+
+6：箭头函数
 function (){
 ....
 }
@@ -46,20 +42,22 @@ https://blog.51cto.com/2014fontend/2327334
 2.箭头函数的this: 指向箭头函数定义时所处的对象，而不是箭头函数使用时所在的对象，默认使
 
 用父级的this
-----------------------------------------------------------------------------
+
 参数展开
    收集
    展开
 数组展开
+
 json展开
-----------------------------------------------------------------------------
+
 原生对象array扩展
 map  映射  一一对应
     [45,70,12,100] =>[不及格，及格，不及格，及格]
 reduce  n->1
 filter  过滤
+
 foreah  遍历
-----------------------------------------------------------------------------
+
 JSON.stringify
 JSON.parse
 json标准写法
@@ -69,37 +67,21 @@ json标准写法
 {a:1,"b":"abc"}   错误
 
 {a:1,"b":'abc'}   错误
--------------------------------------------------------------------------
-编译es6（IE9以下不支持es6,包括ie9）
-一：在线编译
-0：资源地址
-https://unpkg.com/babel-standalone@6.26.0/babel.min.js
-1：引入
-<script src="js/babel.min.js" charset="utf-8"></script>
-<script type="text/babel">
-let a=2;
-alert(a);
-</script>
 
+字符串拼接简单办法
+```javascript
+console.log(`person.constructor：${person.constructor}`);
+```
 
-二：离线编译
-1:安装node
-2:创建包文件
-npm init -y
-3：安装babel
-npm i @babel/core @babel/cli @babel/preset-env -D
-npm i @babel/polyfill  解决类似ie6更低版本浏览器
-3:包文件添加脚本
-"build":"babel src -d dest"
-4：添加配置文件（.babelrc）
-{
-  "presets":["@babel/preset-env"
-  ]
-}
-5:执行
-npm run build
------------------------------------------------------------------------------
-融合同步、异步
+## 2：ES6面向对象
+
+class 类声明
+constructor 类构造函数
+extends   继承
+super      父类/超类
+
+## 3：异步回调
+
 1：
 Promise  封装
 Promise.all
@@ -109,8 +91,85 @@ generator/yield   已废弃，用async/await替代了
 3：
 async/await
 普通函数   一直执行，直到结束
+
 async/await      能够"暂停"，async await语法不会阻塞Node.js的单线程。async await语法可能是回调函数的语法糖
-------------------------------------------------------------------------------
+
+## 4：es6模块化语法
+
+1：export
+// 声明导出
+export let a=2
+
+// 导出一堆
+let a,b,c=...;
+export {a,b,c};
+
+// 导出函数
+export funciton（）{}
+
+// 导出类
+export class
+
+// 默认成员
+export default
+2：import
+// 导入全部
+import * as mod1 from 'xxx';
+
+// 导入默认
+import default as mod1 from 'xxx';
+
+// 选择性导入
+import {a,b as name} from 'xxx';
+
+// 运行模块代码，但不引入任何成员
+import 'xxx';
+
+// 异步引入
+let Promise=await imort('xxx');
+
+注意：import和import()是有区别的，import()是分包用的，打包结果会分包
+
+
+
+# 二：编译es6--IE9以下不支持es6,包括ie9
+
+## 1：在线编译
+
+资源地址：https://unpkg.com/babel-standalone@6.26.0/babel.min.js
+
+```javascript
+<script src="js/babel.min.js" charset="utf-8"></script>
+<script type="text/babel">
+let a=2;
+alert(a);
+</script>
+```
+
+## 2：离线编译
+
+2.1:安装node
+2.2:创建包文件
+npm init -y
+2.3：安装babel
+npm i @babel/core @babel/cli @babel/preset-env -D
+npm i @babel/polyfill  解决类似ie6更低版本浏览器
+2.4:包文件添加脚本
+"build":"babel src -d dest"
+2.5：添加配置文件（.babelrc）
+{
+  "presets":["@babel/preset-env"
+  ]
+}
+2.6:执行
+npm run build
+
+
+
+# 四：JS基础
+
+## 1：原型链
+
 prototype/__proto__
 1：每个对象都会有__proto__这个属性（__proto__指向产生它的类的prototype）（Object的prototype没有__proto__，即它是一切之源），
 是用来通过__proto__找到它的原型即prototype，function声明的变量的__proto__指向Function的prototype
@@ -118,6 +177,7 @@ prototype/__proto__
 3：prototype它是一个对象（在声明函数变量是在函数内部由js自动创建），因此它也有__proto__，并且指向Object的prototype;
 4：特殊的Function和Object(详见原型指向.jpg说明)
 4.1：首先没鸡没蛋，先有一个特殊对象root_prototype，它是上帝。
+
 - 接下来应该是先有Function，并且定义它的prototype和__proto__，都连上了root_prototype。
 - 然后才有了Object，它是Function的instance，继承了Function。这时候Object仍然只是个普通的函数。
 - 然后规定Object.prototype = root_prototype，这时候Object才开始显得特殊，成为了原型链的顶端，否则它和其它函数根本没什么区别。
@@ -137,7 +197,8 @@ https://segmentfault.com/a/1190000012553959
                                               ——JS作者
 
 -------------------------------------------------------------------------------
-ES5实现继承的几种方式：
+## 2：ES5实现继承的几种方式：
+
 https://www.cnblogs.com/gwf93/p/10384352.html
 1：原型链继承
 function Cat() {
@@ -184,8 +245,9 @@ function Cat(name){
   Super.prototype = Animal.prototype;
   //将实例作为子类的原型
   Cat.prototype = new Super();
+
 })();
--------------------------------------------------------------------------------
+
 构造函数
 1：当我们用new
 运算符会产生以下步骤：
@@ -195,46 +257,15 @@ obj.__proto__=a.prototype;
 2：构造函数意义
 
 https://www.cnblogs.com/aoyo/p/5245162.html
--------------------------------------------------------------------------------
-ES6面向对象
-class 类声明
-constructor 类构造函数
-extends   继承
-super  父类/超类
-------------------------------------------------------------------
-es6模块化
-1：export
-// 声明导出
-export let a=2
 
-// 导出一堆
-let a,b,c=...;
-export {a,b,c};
+## 3：匿名函数
 
-// 导出函数
-export funciton（）{}
+小括号能把我们的表达式组合分块，并且每一块，也就是每一对小括号，都有一个返回值
+因此，小括号对加上匿名函数就如同有名字的函数般被我们取得它的引用位置了。所以如果在这个
+引用变量后面再加上参数列表，就会实现普通函数的调用形式。
 
-// 导出类
-export class
+## 4：计算机单位
 
-// 默认成员
-export default
-2：import
-// 导入全部
-import * as mod1 from 'xxx';
-
-// 导入默认
-import default as mod1 from 'xxx';
-
-// 选择性导入
-import {a,b as name} from 'xxx';
-
-// 运行模块代码，但不引入任何成员
-import 'xxx';
-
-// 异步引入
-let Promise=await imort('xxx');
----------------------------------------------------------------------------
 位(比特)：bit
 字节(B)：Byte
 千字节(KB、k)：kByte
@@ -246,21 +277,166 @@ TB
 1 MB = 1024 KB
 1 GB = 1024 MB
 1 TB = 1024 GB
-----------------------------------------------------------------------------
+
+## git常用命令
+
+git add . 将所有文件保存到暂存区
+git commit -m '' 提交到仓库
+git push 推送到远程
+git pull= git fetch + git merge 从远程仓库获取最新版本，然后再与本地分支merge（合并）
+
+git clone https://github.com/ericshang2019/sd.git  从远程服务器科隆仓库
+
+git
+https://www.cnblogs.com/EasonJim/p/8403587.html
+https://www.jianshu.com/p/37f3a7e4a193
+
+https://blog.csdn.net/weixin_33127753/article/details/88870257
+
+webpack命令行接口说明
+
+http://www.myjscode.com/page/articleMap.html
+
+webpack配合vue
+1：安装
+cnpm i vue-loader vue-style-loader vue-html-loader vue-template-compiler -D
+
+## 正则--处理字符串
+
+校验
+提取
+
+编写正则：
+1：创建正则
+JS风格：new RegExp()
+直接量语法 OR per风格(两边的斜杠称之为定界符)：/\d+/
+
+2：使用
+search  类似于indexof，是位置
+match   全局匹配
+replace 替换
+
+3：选项：
+1：Ignore   忽略大小写
+2：Gloable  
+3：m        多行模式
+单行模式（默认）：^$指的是整个字符串的开头和结尾：不会识别字符串里面的换行(\n)
+多行模式：^$指的是每一行的开头和结尾：识别字符串中的\n
+可以混用，和顺序无关
+
+4：转义：
+\d digit    数字
+\w          [a-z0-9_]
+
+5：机制
+懒
+贪婪匹配
+越多越好-正则默认情况下会倾向于匹配尽可能长的东西
+
+量词-几个
+1：如果不加量词，默认就是一个
+
+6：元字符
+或
+/x[abc]y/
+范围
+[a-z]
+[0-9a-z]
+排除
+[^abc]
+[^0-9]
+量词
+{n} 几个
+{n,m} 最少，最多
+{n,}
+{0,m}
+
++ {1,}  至少一个
+
+* {0,}  可以没有
+* 用起来容易出问题
+  ？ {0,1}
+  谓语（修饰符）
+  ^ 行首
+  $ 行尾
+  . 任意字符
+
+实践
+1：手机号
+/^(13\d|15[08]|17[0-4])\d{8}$/
+
+2：邮箱
+/^\w{1,64}[a-z0-9-]{1,256}(\.[a-z]{2,6}){1,2}$/i
+
+3：用户名（数字、字母、下划线）8-32位
+
+
+
+# 五：node基础
+
+## 1:介绍
+
+中间层语言
+1：安全性--避免主服务器暴露在外面
+2：充分利用已有代码、增强主服务器代码的独立性
+3：性能
+4：丰富接口功能
+工具开发
+
+npm全称nodejs package manager  
+https://npmjs.org
+https://npm.taobao.org
+
+## 2：nodejs模块系统
+
+因为nodejs早于es6出现，所以并没有采用es6的模块化系统
+1》一个文件就是一个模块
+
+
+2》定义模块
+exports.xx=xxxx
+module.exports={
+
+}
+module.exports=function(){}
+
+module.exports=class{};
+
+3》引入模块
+    node_modules目录的重要性
+   例子：const fs=require('fs');
+    几种方式
+    require('mod')         找系统模块/node_modules/父目录node_modules
+    requere(/xx/xx/http)   自定义模块--绝对路径
+    requere(./xx/xx/http)  自定义模块--相对路径
+
+4》模块全局安装路径
+https://blog.csdn.net/hdchangchang/article/details/80402920
+
+## 3：认识package.json  nodejs的工程文件
+
+​    快速安装
+​    添加各种脚本配置信息
+​    发布包
+
+## 4：包管理
+
 卸载模块
 cnmp un 模块名字  -D
 nodejs中 require是如何搜索加载模块的
 http://blog.chinaunix.net/uid-30150972-id-4882429.html
+
 注意：npm装的包和cnpm装的包是不能混用的
-----------------------------------------------------------------------------
+
 file-loader && url-loader
 fiel-loader
 让webpack能够处理文件的loader,将文件也编译到js种（包括直接引入的，也包括CSS种引入的）;
 为避免重名，文件名是文件的MD5值；
 url-loader
 包含file-loader的功能，而且可以把文件转换为base64（dataurl）的形式
+
 注意：url-loader可以单独使用，但是必须下载file-loader，否则无法正常使用
-------------------------------------------------------------------------------
+
 常用命令
 查看/修改全局模块全局路径
 npm config ls
@@ -270,8 +446,9 @@ $ npm install -g cnpm --registry=https://registry.npm.taobao.org
 全局安装webpack
 cnpm i -g webpack
 查看包信息
+
 npx autoprefixer --info
-------------------------------------------------------------------------------
+
 nodejs模块查找机制
 require方法接受以下几种参数的传递：
 
@@ -283,16 +460,37 @@ http、fs、path等，原生模块。
 
 mod，非原生模块的文件模块。
 https://blog.csdn.net/handsomexiaominge/article/details/96461786
+
 https://blog.51cto.com/dapengtalk/1891051
------------------------------------------------------------------------------
-webpack打包原理
-webpack只是一个打包模块的机制，只是把依赖的模块转化成可以代表这些包的静态文件。
-并不是什么commonjs或者amd之类的模块化规范。webpack就是识别你的 入口文件。
-识别你的模块依赖，来打包你的代码。至于你的代码使用的是commonjs还是amd或者es6的import。
-webpack都会对其进行分析。来获取代码的依赖。webpack做的就是分析代码。转换代码，编译代码，输出代码。
-webpack本身是一个node的模块，所以webpack.config.js是以commonjs形式书写的(node中的模块化是commonjs规范的)
-https://www.jianshu.com/p/e24ed38d89fd
--------------------------------------------------------------------------------
+
+# 六：webpack
+
+## 1：安装
+
+cnpm i -g webpack-cli
+
+## 2：配置文件webpack.config.js
+
+1：mode 决定webpack的优化级别
+   none   不优化
+   development   输出调试信息，设置process.env.NODE_ENV
+   production    最高优化，启用压缩、忽略错误
+2：entry:入口
+   单入口-SPA
+   多入口-MPA
+3： output：输出
+    {
+        path  路径--必须是绝对路径   path.resolve
+        filename:输出的文件名
+
+    }
+4：loader  解析js以为的东西
+
+css-loader  读取css,输出js字符串
+style-loader 输出字符串<style>
+postcss-loader 
+autoprefixer
+
 loader总结
 style-loader   输出样式：<style></style>
 css-loader     解析css文件、import
@@ -304,8 +502,46 @@ bable-loader  es6
 
 devtool 'source map' 便于调试
 
+webpack完整配置
+1：安装模块
+1.1：webpack类
+webpack webpack-cli webpack-dev-server
+1.2：样式类
+style-loader css-loader
+postcss-loader autoprefixer
+less-loader less
+1.3：文件类
+file-loader url-loader
+1.4：ES6编译
+babel-loader @babel/core @babel/preset-env
+1.5：html生成
+html-webpack-plugin
+1.6：代码质量
+eslint-loader eslint
+stylelint stylelint-webpack-plugin stylelint-config-standard
+1.7：测试
+jest
+
+2：定目录结构
+3：配置package.json
+4：配置webpack
+
+5：通用配置
+
+## 3：webpack打包原理
+
+webpack只是一个打包模块的机制，只是把依赖的模块转化成可以代表这些包的静态文件。
+并不是什么commonjs或者amd之类的模块化规范。webpack就是识别你的 入口文件。
+识别你的模块依赖，来打包你的代码。至于你的代码使用的是commonjs还是amd或者es6的import。
+webpack都会对其进行分析。来获取代码的依赖。webpack做的就是分析代码。转换代码，编译代码，输出代码。
+webpack本身是一个node的模块，所以webpack.config.js是以commonjs形式书写的(node中的模块化是commonjs规范的)
+
+https://www.jianshu.com/p/e24ed38d89fd
+
+
+
 注意：IE9以上才支持Object.defineProperty()
---------------------------------------------------------------------------------
+
 dev-server 用于开启开发服务器
 1：提供网络环境--cookie等
 2：热更新
@@ -338,67 +574,20 @@ html-webpack-plugin 帮助输出html
   ]
 }
 
-注意：import和import()是有区别的，import()是分包用的，打包结果会分包
-----------------------------------------------------------------------
+# 附录：
+
 vue
 1:核心思想（极其重要）     由程序思维转变为数据驱动思维
 2：指令
 @click
 v-bind   单向（数据->视图）
+
 v-model  双向（数据<->视图）
-----------------------------------------------------------------------
+
 代码质量管理---eslint
+
 代码测试---jest
---------------------------------------------------------------------
-git
-https://www.cnblogs.com/EasonJim/p/8403587.html
-https://www.jianshu.com/p/37f3a7e4a193
-https://blog.csdn.net/weixin_33127753/article/details/88870257
---------------------------------------------------------------------
+
 浏览器占有率统计
+
 https://browserl.ist/
---------------------------------------------------------------------------
-webpack完整配置
-1：安装模块
-1.1：webpack类
-webpack webpack-cli webpack-dev-server
-1.2：样式类
-style-loader css-loader
-postcss-loader autoprefixer
-less-loader less
-1.3：文件类
-file-loader url-loader
-1.4：ES6编译
-babel-loader @babel/core @babel/preset-env
-1.5：html生成
-html-webpack-plugin
-1.6：代码质量
-eslint-loader eslint
-stylelint stylelint-webpack-plugin stylelint-config-standard
-1.7：测试
-jest
-
-2：定目录结构
-3：配置package.json
-4：配置webpack
-5：通用配置
------------------------------------------------------------------------
-git add . 将所有文件保存到暂存区
-git commit -m '' 提交到仓库
-git push 推送到远程
-git pull= git fetch + git merge 从远程仓库获取最新版本，然后再与本地分支merge（合并）
-git clone https://github.com/ericshang2019/sd.git  从远程服务器科隆仓库
-----------------------------------------------------------------------
-webpack命令行接口说明
-http://www.myjscode.com/page/articleMap.html
------------------------------------------------------------------------
-webpack配合vue
-1：安装
-cnpm i vue-loader vue-style-loader vue-html-loader vue-template-compiler -D
-
-### 字符串拼接简单办法
-
-```
-console.log(`person.constructor：${person.constructor}`);
-```
-
