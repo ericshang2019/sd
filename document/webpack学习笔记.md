@@ -287,6 +287,26 @@ git pull= git fetch + git merge 从远程仓库获取最新版本，然后再与
 
 git clone https://github.com/ericshang2019/sd.git  从远程服务器科隆仓库
 
+一、未使用 git add 缓存代码时
+
+可以使用 git checkout -- filepathname (比如： git checkout -- readme.md ，不要忘记中间的 “--” ，不写就成了检出分支了！！)。放弃所有的文件修改可以使用 git checkout . 命令。
+
+此命令用来放弃掉所有还没有加入到缓存区（就是 git add 命令）的修改：内容修改与整个文件删除。但是此命令不会删除掉刚新建的文件。因为刚新建的文件还没已有加入到 git 的管理系统中。所以对于git是未知的。自己手动删除就好了。
+
+二、已经使用了 git add 缓存了代码
+
+可以使用 git reset HEAD filepathname （比如： git reset HEAD readme.md）来放弃指定文件的缓存，放弃所以的缓存可以使用 git reset HEAD . 命令。
+
+此命令用来清除 git 对于文件修改的缓存。相当于撤销 git add 命令所在的工作。在使用本命令后，本地的修改并不会消失，而是回到了如（一）所示的状态。继续用（一）中的操作，就可以放弃本地的修改。
+
+三、已经用 git commit 提交了代码
+
+可以使用 git reset --hard HEAD^ 来回退到上一次commit的状态。此命令可以用来回退到任意版本：git reset --hard commitid
+
+git log 可以查看请交历史记录 
+
+
+
 git
 https://www.cnblogs.com/EasonJim/p/8403587.html
 https://www.jianshu.com/p/37f3a7e4a193
@@ -392,7 +412,6 @@ https://npm.taobao.org
 因为nodejs早于es6出现，所以并没有采用es6的模块化系统
 1》一个文件就是一个模块
 
-
 2》定义模块
 exports.xx=xxxx
 module.exports={
@@ -413,7 +432,36 @@ module.exports=class{};
 4》模块全局安装路径
 https://blog.csdn.net/hdchangchang/article/details/80402920
 
+5》从webpack打包原理理解module.exports和exports
+
+https://segmentfault.com/a/1190000012829900
+
+```javascript
+var module = {
+
+  exports: {}
+
+}
+
+function test(module2,exports2){
+
+  module2.exports='nina';
+
+  exports2='eric';
+
+}
+
+test(module,module.exports);
+
+console.log(module.exports); // 输出nina
+```
+
+![image-20200615134056572](C:\Users\shangyufeng\AppData\Roaming\Typora\typora-user-images\image-20200615134056572.png)
+
+
+
 ## 3：认识package.json  nodejs的工程文件
+  npm init -y
 
 ​    快速安装
 ​    添加各种脚本配置信息
@@ -573,6 +621,82 @@ html-webpack-plugin 帮助输出html
   })
   ]
 }
+
+# 七：vue框架
+
+## 1：介绍
+
+vue框架核心思想（极其重要）------由程序思维转变为数据驱动思维
+
+声明式渲染-----Vue.js 的核心是一个允许采用简洁的模板语法来声明式地将数据渲染进 DOM 的系统。
+
+命令式：需要以具体代码表达在哪里做什么？它是如何实现的
+
+声明式：只需要声明在哪里需要做什么？不需要关心具体怎么实现的
+
+1>文本插值
+
+{{ message }}
+
+2>指令
+
+指令带有前缀 `v-`，以表示它们是 Vue 提供的特殊 attribute
+
+v-bind，v-if，v-for，v-on，v-model
+
+3>组件
+
+组件系统是 Vue 的另一个重要概念，因为它是一种抽象，允许我们使用小型、独立和通常可复用的组件构建大型应用
+
+代码例子
+
+```html
+<div id='root'>
+         {{message}}
+
+         <span v-bind:title="message" v-if="seen">test</span>
+
+         <ul>
+            <li v-for="todo in todos"> {{ todo.text }} </li>
+        </ul>
+        <input v-model="message">
+        <button v-on:click="reservemessage">反转</button>
+
+        <ol>
+            <todo-item 
+             v-for="item in todos"
+             v-bind:todo="item"></todo-item>
+        </ol>
+     </div>
+```
+
+```javascript
+var Vue=require('vue/dist/vue.js');
+Vue.component('todo-item',{
+    props:['todo'],
+    template:'<li>{{todo.text}}</li>' 
+})
+new Vue({
+    el: "#root",
+    data: {
+        message: "hello world",
+        seen:false,
+        todos: [
+            { text: '学习 JavaScript',id:0 },
+            { text: '学习 Vue',id:1 },
+            { text: '整个牛项目',id:2 }
+          ]
+    },
+    methods: {
+        reservemessage:function(){
+            this.message=this.message.split('').reverse().join('');
+        }
+        
+    }
+  });
+```
+
+
 
 # 附录：
 

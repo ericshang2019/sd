@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("let sum=__webpack_require__(/*! ./mod */ \"./src/mod.js\");\r\nlet mod2=__webpack_require__(/*! ./mod2 */ \"./src/mod2.js\");\r\nlet mod3=__webpack_require__(/*! ./mod3 */ \"./src/mod3.js\");\r\nfunction helloworld(){\r\n    console.log('helloworld');\r\n}\r\nhelloworld();\r\nsum(1,2);\r\nmod2.finn();\r\nmod3.nina();\r\n\r\nvar module = {\r\n    exports: {}\r\n}\r\nfunction test(module,exports){\r\n    module={name:'finn'};\r\n}\r\ntest(module,module.exports);\r\nconsole.log(module.exports);\r\n\r\n  \n\n//# sourceURL=webpack:///./src/index.js?");
+eval("let sum=__webpack_require__(/*! ./mod */ \"./src/mod.js\");\r\nfunction helloworld(){\r\n    console.log('helloworld');\r\n}\r\nhelloworld();\r\nsum(1,2);\r\n\r\n  \n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ }),
 
@@ -105,28 +105,6 @@ eval("let sum=__webpack_require__(/*! ./mod */ \"./src/mod.js\");\r\nlet mod2=__
 /***/ (function(module, exports) {
 
 eval("function sum(a,b){\r\n    console.log(a+b);\r\n}\r\nmodule.exports=sum;\n\n//# sourceURL=webpack:///./src/mod.js?");
-
-/***/ }),
-
-/***/ "./src/mod2.js":
-/*!*********************!*\
-  !*** ./src/mod2.js ***!
-  \*********************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("let mod3=__webpack_require__(/*! ./mod3 */ \"./src/mod3.js\");\r\nexports.finn=function(){\r\n    console.log('i am finn');\r\n    mod3.nina()\r\n    \r\n}\n\n//# sourceURL=webpack:///./src/mod2.js?");
-
-/***/ }),
-
-/***/ "./src/mod3.js":
-/*!*********************!*\
-  !*** ./src/mod3.js ***!
-  \*********************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports.nina=function(){\r\n    console.log('i am finn');\r\n    \r\n}\n\n//# sourceURL=webpack:///./src/mod3.js?");
 
 /***/ })
 

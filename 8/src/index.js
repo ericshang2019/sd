@@ -13,9 +13,10 @@ var module = {
     exports: {}
 }
 function test(module,exports){
-    module={name:'finn'};
+    module.exports='nina';
+    exports='eric';
 }
 test(module,module.exports);
-console.log(module.exports);
+console.log(module.exports); // 输出nina
 
   

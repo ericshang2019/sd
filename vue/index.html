@@ -1,0 +1,23 @@
+<html>
+    <head>
+    </head>
+    <body>
+     <div id='root'>
+         {{message}}
+
+         <span v-bind:title="message" v-if="seen">test</span>
+
+         <ul>
+            <li v-for="todo in todos"> {{ todo.text }} </li>
+        </ul>
+        <input v-model="message">
+        <button v-on:click="reservemessage">反转</button>
+
+        <ol>
+            <todo-item 
+             v-for="item in todos"
+             v-bind:todo="item"></todo-item>
+        </ol>
+     </div>
+    </body>
+</html>
