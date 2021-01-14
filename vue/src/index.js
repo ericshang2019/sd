@@ -1,9 +1,16 @@
 var Vue=require('vue/dist/vue.js');
 Vue.component('todo-item',{
     props:['todo'],
-    template:'<li>{{todo.text}}</li>' 
+    template:`
+    <div>
+    <li>{{todo.text}}</li>
+    <button v-on:click="$emit('enlarge-text')">
+    监听子组件事件
+    </button>
+    </div>
+    `
 })
-new Vue({
+var vm=new Vue({
     el: "#root",
     data: {
         message: "hello world",
@@ -19,7 +26,16 @@ new Vue({
             this.message=this.message.split('').reverse().join('');
         }
         
-    }
+    },
+    created() {
+        console.log(this.$el);
+        console.log(document.getElementById("root"));
+    },
+    mounted() {
+        console.log(this.$el);
+        console.log(this.$data);
+    },
+
   });
  
 

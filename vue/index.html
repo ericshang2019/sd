@@ -11,12 +11,13 @@
             <li v-for="todo in todos"> {{ todo.text }} </li>
         </ul>
         <input v-model="message">
-        <button v-on:click="reservemessage">反转</button>
+        <button v-on:click="reservemessage"
+        v-on:enlarge-text=reservemessage>反转</button>
 
         <ol>
             <todo-item 
              v-for="item in todos"
-             v-bind:todo="item"></todo-item>
+             v-bind:todo="item">你好</todo-item>
         </ol>
      </div>
     </body>
