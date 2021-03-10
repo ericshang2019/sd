@@ -1,0 +1,47 @@
+plugins {
+    id 'java'
+    id 'org.jetbrains.intellij' version '0.7.2'
+    id 'maven'
+}
+
+group 'com.autohome.plugincontainer'
+version '1.0.0'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven { url "https://www.jetbrains.com/intellij-repository/releases" }
+    maven { url "https://jetbrains.bintray.com/intellij-third-party-dependencies" }
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    // compile group: 'com.autohome', name: 'auto-gist', version: '2.0.0'
+    // compile group: 'com.autohome.plugincontainer', name: 'tracksdk', version: '1.0.0'
+    // compile fileTree(dir: 'src/main/libs', includes: ['*.jar'])
+}
+
+intellij {
+    version '2019.2.4'
+    plugins = ['maven', 'java', 'yaml', 'Git4Idea','com.chuntung.plugin.gistsnippet:1.0.2']
+}
+
+
+patchPluginXml {
+    sinceBuild '192'
+    untilBuild '202.*'
+    changeNotes """m
+      Add change notes here.<br>
+      <em>most HTML tags may be used</em>"""
+}
+
+javadoc {
+    options {
+        encoding "UTF-8"
+        charSet 'UTF-8'
+        author true
+        version true
+        title "文档大标题"
+    }
+}

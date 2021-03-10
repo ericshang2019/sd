@@ -1,0 +1,47 @@
+<idea-plugin>
+    <id>com.autohome.idea.plugin.container</id>
+    <name>DTookit</name>
+    <vendor email="shangyufeng@autohome.com.cn" url="http://www.autohome.com">AutoHome</vendor>
+
+    <description><![CDATA[
+        DTookit是一个安装在IDEA中，提高开发者编程效率的工具包。<br>
+        可以一站式解决日常开发工作中的以下痛点：<br>
+        1：核心逻辑代码需要评审，但是缺少系统化的工具保证评审效果；<br>
+        2：接口文档每次都需要手工维护，以及文档和代码不同步导致的沟通成本；<br>
+        3：不能及时发现sql语句潜在的性能问题；<br>
+        4：常用代码片段没有一个统一管理的地方；<br>
+    ]]></description>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <!-- uncomment to enable plugin in all products
+    <depends>com.intellij.modules.lang</depends>
+    -->
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.java</depends>
+    <depends>com.intellij.modules.lang</depends>
+    <depends>org.jetbrains.idea.maven</depends>
+    <depends>org.jetbrains.plugins.yaml</depends>
+    <depends>Git4Idea</depends>
+    <depends>com.chuntung.plugin.gistsnippet</depends>
+
+    <actions>
+        <group id="com.autohome.plugincontainer.action.ToolsMenuGroup"
+               text="DTookit"
+               description="开发者工具包"
+               icon="/icons/toolbox.png"
+               popup="true">
+            <add-to-group group-id="ToolsMenu" anchor="first" />
+            <action class="com.chuntung.plugin.gistsnippet.action.InsertAction" description="Search gist and then insert selection into current editor" text="Insert Gist..." id="GistSnippet.Insert">
+
+            </action>
+            <action id="com.autohome.plugincontainer.action.GuideDialogAction"
+                    class="com.autohome.plugincontainer.action.GuideDialogAction"
+                    text="使用指南"
+                    description="使用指南">
+                <keyboard-shortcut keymap="$default" first-keystroke="alt h"/>
+            </action>
+            <separator/>
+        </group>
+    </actions>
+</idea-plugin>
